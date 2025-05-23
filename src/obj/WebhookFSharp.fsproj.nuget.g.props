@@ -15,5 +15,6 @@
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgMicrosoft_Data_Sqlite Condition=" '$(PkgMicrosoft_Data_Sqlite)' == '' ">/Users/pedropertusi/.nuget/packages/microsoft.data.sqlite/9.0.5</PkgMicrosoft_Data_Sqlite>
     <PkgFSharp_Core Condition=" '$(PkgFSharp_Core)' == '' ">/Users/pedropertusi/.nuget/packages/fsharp.core/9.0.101</PkgFSharp_Core>
+    <PkgDotNetEnv Condition=" '$(PkgDotNetEnv)' == '' ">/Users/pedropertusi/.nuget/packages/dotnetenv/3.1.1</PkgDotNetEnv>
   </PropertyGroup>
 </Project>

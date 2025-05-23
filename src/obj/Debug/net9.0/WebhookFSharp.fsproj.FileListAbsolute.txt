@@ -138,3 +138,5 @@
 /Users/pedropertusi/Desktop/WebhookFSharp/src/obj/Debug/net9.0/WebhookFSharp.pdb
 /Users/pedropertusi/Desktop/WebhookFSharp/src/obj/Debug/net9.0/WebhookFSharp.genruntimeconfig.cache
 /Users/pedropertusi/Desktop/WebhookFSharp/src/obj/Debug/net9.0/ref/WebhookFSharp.dll
+/Users/pedropertusi/Desktop/WebhookFSharp/src/bin/Debug/net9.0/DotNetEnv.dll
+/Users/pedropertusi/Desktop/WebhookFSharp/src/bin/Debug/net9.0/Sprache.dll

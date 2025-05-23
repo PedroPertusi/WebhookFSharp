@@ -33,7 +33,7 @@ module Validation =
         | None ->
             None
 
-    let expectedToken = "meu-token-secreto"
+    let mutable expectedToken = ""
 
     let validateToken (ctx: HttpContext) : bool =
         match ctx.Request.Headers.TryGetValue "X-Webhook-Token" with

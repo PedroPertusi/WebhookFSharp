@@ -7,11 +7,21 @@ open Microsoft.Extensions.Hosting
 open System.Threading.Tasks
 open Webhook.Db
 open Webhook.WebhookHandler
+open DotNetEnv
 
 module Program =
 
   [<EntryPoint>]
   let main _ =
+    Env.Load()
+
+    let secret =
+      match Environment.GetEnvironmentVariable "WEBHOOK_SECRET_TOKEN" with
+      | null | "" -> failwith ".env: WEBHOOK_SECRET_TOKEN not defined"
+      | s -> s
+
+    Validation.expectedToken <- secret
+
     Db.ensureTable()
 
     let builder = WebApplication.CreateBuilder()
