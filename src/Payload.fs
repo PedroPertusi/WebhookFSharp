@@ -3,6 +3,7 @@ namespace Webhook
 open System
 open System.Text.Json.Serialization
 
+/// Representa o formato do payload JSON recebido pelo webhook.
 type Payload = {
   [<JsonPropertyName("event")>]
   event: string

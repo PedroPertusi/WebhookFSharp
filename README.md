@@ -61,17 +61,17 @@ Isso irá compilar e executar o projeto, que estará disponível em `http://loca
 
 ```
 WebhookFSharp/
-│  WebhookFSharp.fsproj
-│  README.md
-|  .env
-|  .gitignore
-│
-├─Payload.fs          # Model do JSON de entrada
-├─Validation.fs       # Parsing e regras de negócio
-├─WebhookClient.fs    # HTTP client para confirmar/cancelar
-├─Db.fs               # Acesso a SQLite
-├─WebhookHandler.fs   # Lógica principal do endpoint /webhook
-└─Program.fs          # Configuração do ASP.NET Core +
+├── .gitignore
+├── README.md
+└── src/
+    ├── WebhookFSharp.fsproj
+    ├── Payload.fs
+    ├── Validation.fs
+    ├── WebhookClient.fs
+    ├── Db.fs
+    ├── WebhookHandler.fs
+    └── Program.fs
+    └── .env
 ```
 
 ## Testando o Endpoint

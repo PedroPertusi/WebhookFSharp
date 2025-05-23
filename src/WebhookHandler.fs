@@ -7,7 +7,20 @@ open Webhook.Db
 open Webhook.WebhookClient
 open Webhook.Validation
 
+/// Módulo que agrupa o handler principal para processar chamadas ao endpoint `/webhook`.
+/// Realiza validação de token, parsing e validação de payload, controle de idempotência
+/// via banco de dados e notificação de confirmação ou cancelamento externos.
 module WebhookHandler =
+    /// Handler assíncrono para requisições POST em `/webhook`.
+    /// <param name="ctx">Contexto HTTP da requisição recebida.</param>
+    /// <returns>
+    ///   Task<IResult> que produz:
+    ///   - 401 Unauthorized se o token for inválido,
+    ///   - 400 Bad Request se o payload falhar na validação (envia cancelamento),
+    ///   - 409 Conflict se a transação já tiver sido processada,
+    ///   - 200 OK se confirmar com sucesso,
+    ///   - 500 Internal Server Error em caso de falha de persistência.
+    /// </returns>
     let webhookHandler (ctx: HttpContext) : Task<IResult> = task {
         if not (validateToken ctx) then
             return Results.Unauthorized()

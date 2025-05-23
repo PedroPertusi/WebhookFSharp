@@ -4,10 +4,15 @@ open System
 open System.Threading.Tasks
 open Microsoft.Data.Sqlite
 
+/// Módulo de acesso ao banco de dados SQLite para controle de transações processadas.
 module Db =
-
+    /// Connection string para o arquivo SQLite 'webhook.db'.
     let connectionString = "Data Source=webhook.db"
 
+    /// Garante que a tabela 'processed_transactions' exista no banco de dados.
+    /// Cria a tabela se ela ainda não existe, com colunas:
+    /// - transaction_id: chave primária (TEXT)
+    /// - processed_at: timestamp da inserção (padrão CURRENT_TIMESTAMP)
     let ensureTable () =
         use conn = new SqliteConnection(connectionString)
         conn.Open()
@@ -20,6 +25,9 @@ module Db =
         """
         cmd.ExecuteNonQuery() |> ignore
 
+    /// Verifica se uma transação já foi processada.
+    /// <param name="transactionId">ID da transação a ser verificada.</param>
+    /// <returns>Task que resulta em 'true' se existir registro, 'false' caso contrário.</returns>
     let hasProcessed (transactionId: string) : Task<bool> = task {
         use conn = new SqliteConnection(connectionString)
         do! conn.OpenAsync()
@@ -30,6 +38,10 @@ module Db =
         return reader.HasRows
     }
 
+    /// Marca uma transação como processada no banco de dados.
+    /// Se o registro já existir, não lança erro (usa INSERT OR IGNORE).
+    /// <param name="transactionId">ID da transação a ser marcada.</param>
+    /// <returns>Task que resulta em 'true' se inseriu um novo registro, 'false' se já existia.</returns>
     let markProcessed (transactionId: string) : Task<bool> = task {
         use conn = new SqliteConnection(connectionString)
         do! conn.OpenAsync()
