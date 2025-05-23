@@ -13,8 +13,6 @@ module Validation =
             None
 
     let validatePayload (payload: Payload) : bool =
-        printfn "Recebido payload: %A" payload
-
         payload.event = "payment_success"
         && payload.amount > 0.0
         && not (String.IsNullOrWhiteSpace payload.transactionId)
@@ -22,15 +20,11 @@ module Validation =
         && payload.timestamp > DateTime.MinValue
 
     let parseAndValidate (body: string) : Payload option =
-        // printfn "Recebido payload: %s" body
-
         let parsed = parsePayload body
-        // printfn "Resultado do parse: %A" parsed
 
         match parsed with
         | Some p ->
             let isValid = validatePayload p
-            // printfn "Resultado da validação: %b" isValid
             if isValid then
                 Some p
             else
@@ -38,7 +32,6 @@ module Validation =
 
         | None ->
             None
-
 
     let expectedToken = "meu-token-secreto"
 

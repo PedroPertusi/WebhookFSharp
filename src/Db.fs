@@ -6,10 +6,8 @@ open Microsoft.Data.Sqlite
 
 module Db =
 
-    /// Caminho para o arquivo SQLite
     let connectionString = "Data Source=webhook.db"
 
-    /// Garante que a tabela exista (usado no startup)
     let ensureTable () =
         use conn = new SqliteConnection(connectionString)
         conn.Open()
@@ -22,7 +20,6 @@ module Db =
         """
         cmd.ExecuteNonQuery() |> ignore
 
-    /// Retorna true se a transação já foi processada
     let hasProcessed (transactionId: string) : Task<bool> = task {
         use conn = new SqliteConnection(connectionString)
         do! conn.OpenAsync()
@@ -33,7 +30,6 @@ module Db =
         return reader.HasRows
     }
 
-    /// Tenta marcar a transação como processada; retorna true se inseriu, false se já existia
     let markProcessed (transactionId: string) : Task<bool> = task {
         use conn = new SqliteConnection(connectionString)
         do! conn.OpenAsync()
