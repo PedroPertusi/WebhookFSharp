@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "/NmYEMIiDH6PAXmWmi9c0kBD42tNjsFJmo8zQrGIxWU=",
+  "Source": "WebhookFSharp",
+  "BasePath": "_content/WebhookFSharp",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
